@@ -1,0 +1,7 @@
+{
+  "name": "Gia sư Tin học AI cho trẻ em",
+  "description": "Một chatbot AI tương tác được thiết kế để giúp học sinh tiểu học học các khái niệm tin học một cách vui vẻ và hấp dẫn, có cả chế độ trò chuyện bằng văn bản và giọng nói thời gian thực.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
