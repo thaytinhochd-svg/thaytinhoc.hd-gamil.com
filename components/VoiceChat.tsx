@@ -1,6 +1,6 @@
+
 import React, { useState, useRef, useCallback } from 'react';
-import type { LiveSession } from '@google/genai';
-import { GoogleGenAI, Modality } from '@google/genai';
+import { GoogleGenAI, Modality, type LiveServerMessage } from '@google/genai';
 import type { Transcript } from '../types';
 import { ai } from '../services/geminiService';
 
@@ -45,7 +45,7 @@ async function decodeAudioData(
 
 
 type ConnectionState = 'disconnected' | 'connecting' | 'connected' | 'error';
-const systemInstruction = `Bạn là một trợ lý AI thân thiện, đáng yêu và vui tính tên là "Bạn nhỏ Tin học". Mục tiêu của bạn là giúp các em học sinh tiểu học (từ 6-10 tuổi) học về khoa học máy tính và lập trình thông qua một cuộc trò chuyện bằng giọng nói.
+const systemInstruction = `Bạn là "Gia sư Tin học AI cho trẻ em", một trợ lý AI thân thiện, đáng yêu và vui tính. Mục tiêu của bạn là giúp các em học sinh tiểu học (từ 6-10 tuổi) học về khoa học máy tính và lập trình thông qua một cuộc trò chuyện bằng giọng nói.
 - **QUAN TRỌNG: Giữ câu trả lời của bạn CỰC KỲ ngắn gọn và đi thẳng vào vấn đề.** Cố gắng trả lời trong một hoặc hai câu.
 - Nói bằng giọng vui vẻ và hấp dẫn.
 - Dùng từ ngữ đơn giản.
@@ -56,7 +56,7 @@ const systemInstruction = `Bạn là một trợ lý AI thân thiện, đáng y�
 export const VoiceChat: React.FC = () => {
     const [connectionState, setConnectionState] = useState<ConnectionState>('disconnected');
     const [transcripts, setTranscripts] = useState<Transcript[]>([]);
-    const sessionPromiseRef = useRef<Promise<LiveSession> | null>(null);
+    const sessionPromiseRef = useRef<ReturnType<typeof ai.live.connect> | null>(null);
     const mediaStreamRef = useRef<MediaStream | null>(null);
     const inputAudioContextRef = useRef<AudioContext | null>(null);
     const outputAudioContextRef = useRef<AudioContext | null>(null);
@@ -141,7 +141,7 @@ export const VoiceChat: React.FC = () => {
                         sourceRef.current.connect(scriptProcessorRef.current);
                         scriptProcessorRef.current.connect(inputAudioContextRef.current.destination);
                     },
-                    onmessage: async (message) => {
+                    onmessage: async (message: LiveServerMessage) => {
                         if (message.serverContent?.outputTranscription) {
                             currentOutputTranscription += message.serverContent.outputTranscription.text;
                             setTranscripts(prev => {
@@ -241,7 +241,7 @@ export const VoiceChat: React.FC = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
                     </svg>
                     <h2 className="text-xl font-semibold">Sẵn sàng trò chuyện chưa?</h2>
-                    <p className="max-w-xs mt-1">Nhấn nút micro bên dưới để bắt đầu cuộc trò chuyện bằng giọng nói với Bạn nhỏ Tin học nhé.</p>
+                    <p className="max-w-xs mt-1">Nhấn nút micro bên dưới để bắt đầu cuộc trò chuyện bằng giọng nói với Gia sư Tin học AI nhé.</p>
                 </div>
             )}
             {transcripts.length > 0 && renderTranscripts()}

@@ -4,11 +4,52 @@ import { ai } from '../services/geminiService';
 import type { ChatMessage } from '../types';
 
 const suggestions = [
-  "CPU là gì?",
-  "Phần mềm là gì?",
-  "Internet hoạt động như thế nào?",
-  "Làm sao để tạo thư mục?",
-  "Kể một chuyện vui về robot.",
+  "Làm thế nào để đổi màu chữ trong Word?",
+  "Làm sao để chữ đậm, nghiêng hoặc gạch chân?",
+  "Làm sao để thay đổi kiểu chữ và cỡ chữ trong word ?",
+  "Cách chèn hình ảnh vào văn bản ?",
+  "Làm sao để căn giữa tiêu đề?",
+  "Làm sao để lưu lại văn bản đã gõ?",
+  "Làm sao để nhập dữ liệu vào ô trong Excel ?",
+  "Làm sao để tính tổng các ô nhanh nhất?",
+  "Cách đổi màu nền ô trong bảng tính?",
+  "Cách xóa một hàng hoặc một cột?",
+  "Làm sao để vẽ hình tròn trong Paint ?",
+  "Làm sao để tô màu hình vẽ trong Paint ?",
+  "Cách xóa một phần hình vẽ trong Paint ?",
+  "Cách lưu bức vẽ lại ?",
+  "Internet là gì?",
+  "Làm sao để tìm kiếm thông tin trên Google?",
+  "Vì sao không nên chia sẻ mật khẩu cho người khác?",
+  "Khi gặp tin nhắn lạ hoặc người không quen trên mạng, em nên làm gì?",
+  "Làm sao để mở máy tính?",
+  "Cách tắt máy đúng cách?",
+  "Làm sao để tạo thư mục mới?",
+  "Cách đổi tên tệp hoặc thư mục?",
+  "Scratch là gì?",
+  "Làm sao để nhân vật di chuyển?",
+  "Làm sao để nhân vật nói chuyện?",
+  "Làm sao để lưu dự án Scratch?",
+  "Phần mềm PowerPoint dùng để làm gì?",
+  "Khi mở PowerPoint, màn hình đầu tiên hiện ra là gì?",
+  "Làm sao để thêm một trang chiếu mới?",
+  "Làm sao để nhập chữ vào trang chiếu?",
+  "Làm sao để đổi kiểu chữ và cỡ chữ trong PowerPoint?",
+  "Làm sao để chèn hình ảnh vào trang chiếu?",
+  "Làm sao để chèn hình vẽ (hình tròn, vuông, mũi tên)?",
+  "Làm sao để thêm hiệu ứng chuyển động cho chữ hoặc hình?",
+  "Làm sao để đổi thứ tự xuất hiện của hiệu ứng?",
+  "Cách tạo hiệu ứng chuyển slide (chuyển trang)?",
+  "Làm sao để chèn âm thanh hoặc nhạc nền vào bài trình chiếu?",
+  "Làm sao để xem trước toàn bộ bài trình chiếu?",
+  "Làm sao để lưu bài trình chiếu?",
+  "Làm sao để đổi màu nền của trang chiếu?",
+  "Làm sao để xóa một trang chiếu không cần thiết?",
+  "Cách sắp xếp lại thứ tự các slide?",
+  "Làm sao để chèn chữ nghệ thuật (WordArt)?",
+  "Làm sao để chèn video vào PowerPoint?",
+  "Làm sao để trình chiếu từ slide hiện tại?",
+  "Khi trình chiếu, muốn qua slide tiếp theo thì làm thế nào?",
 ];
 
 export const TextChat: React.FC = () => {
@@ -24,7 +65,7 @@ export const TextChat: React.FC = () => {
       const newChat = ai.chats.create({
         model: 'gemini-2.5-flash',
         config: {
-          systemInstruction: 'Bạn là một trợ lý AI thân thiện, đáng yêu và vui tính tên là "Bạn nhỏ Tin học". Mục tiêu của bạn là giúp các em học sinh tiểu học (từ 6-10 tuổi) học về khoa học máy tính và lập trình. Hãy trả lời cực kỳ ngắn gọn, vui vẻ, dùng từ ngữ đơn giản và các ví dụ gần gũi.',
+          systemInstruction: 'Bạn là "Gia sư Tin học AI cho trẻ em", một trợ lý AI thân thiện, kiên nhẫn và đáng yêu. Mục tiêu của bạn là giúp các em học sinh tiểu học (từ 6-10 tuổi) học về khoa học máy tính và lập trình. Hãy trả lời cực kỳ ngắn gọn, vui vẻ, dùng từ ngữ đơn giản và các ví dụ gần gũi.',
         },
       });
       setChat(newChat);
@@ -76,7 +117,7 @@ export const TextChat: React.FC = () => {
              <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-500 text-3xl font-bold mb-4">
                  AI
              </div>
-             <h2 className="text-xl font-semibold text-gray-700">Chào em, anh là Bạn nhỏ AI Tin học!</h2>
+             <h2 className="text-xl font-semibold text-gray-700">Chào em, đây là Gia sư Tin học AI!</h2>
              <p className="max-w-xs mt-1">Em có thể hỏi anh bất cứ điều gì về máy tính. Hoặc thử một vài gợi ý dưới đây nhé:</p>
              <div className="mt-6 flex flex-wrap justify-center gap-2">
                  {suggestions.map((q, i) => (
@@ -121,7 +162,7 @@ export const TextChat: React.FC = () => {
             value={userInput}
             onChange={(e) => setUserInput(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-            placeholder="Hỏi Bạn nhỏ Tin học bất cứ điều gì..."
+            placeholder="Hỏi Gia sư Tin học bất cứ điều gì..."
             className="flex-1 w-full bg-transparent border-none focus:ring-0 text-sm text-gray-700 px-3"
             disabled={isLoading}
           />

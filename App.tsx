@@ -33,14 +33,14 @@ const App: React.FC = () => {
               AI
             </div>
             <div>
-              <h1 className="text-xl font-bold text-gray-800">Bạn nhỏ AI Tin học</h1>
-              <p className="text-sm text-gray-500">Người bạn hướng dẫn học lập trình!</p>
+              <h1 className="text-xl font-bold text-gray-800">Gia sư Tin học AI cho trẻ em</h1>
+              <p className="text-sm text-gray-500">Người bạn đồng hành cùng em học tin học!</p>
             </div>
           </div>
-          <nav className="flex bg-gray-100 p-1 rounded-full">
+          <nav className="flex bg-gray-100 p-1 rounded-full overflow-x-auto">
             <button
               onClick={() => setMode('text')}
-              className={`px-4 py-2 text-sm font-semibold rounded-full transition-colors duration-300 ${
+              className={`px-4 py-2 text-sm font-semibold rounded-full transition-colors duration-300 whitespace-nowrap ${
                 mode === 'text' ? 'bg-indigo-500 text-white shadow' : 'text-gray-600 hover:bg-gray-200'
               }`}
             >
@@ -48,7 +48,7 @@ const App: React.FC = () => {
             </button>
             <button
               onClick={() => setMode('voice')}
-              className={`px-4 py-2 text-sm font-semibold rounded-full transition-colors duration-300 ${
+              className={`px-4 py-2 text-sm font-semibold rounded-full transition-colors duration-300 whitespace-nowrap ${
                 mode === 'voice' ? 'bg-indigo-500 text-white shadow' : 'text-gray-600 hover:bg-gray-200'
               }`}
             >
@@ -56,7 +56,7 @@ const App: React.FC = () => {
             </button>
             <button
               onClick={() => setMode('image')}
-              className={`px-4 py-2 text-sm font-semibold rounded-full transition-colors duration-300 ${
+              className={`px-4 py-2 text-sm font-semibold rounded-full transition-colors duration-300 whitespace-nowrap ${
                 mode === 'image' ? 'bg-indigo-500 text-white shadow' : 'text-gray-600 hover:bg-gray-200'
               }`}
             >
@@ -64,11 +64,11 @@ const App: React.FC = () => {
             </button>
             <button
               onClick={() => setMode('tools')}
-              className={`px-4 py-2 text-sm font-semibold rounded-full transition-colors duration-300 ${
+              className={`px-4 py-2 text-sm font-semibold rounded-full transition-colors duration-300 whitespace-nowrap ${
                 mode === 'tools' ? 'bg-indigo-500 text-white shadow' : 'text-gray-600 hover:bg-gray-200'
               }`}
             >
-              Công cụ
+              Thư viện công cụ
             </button>
           </nav>
         </header>
